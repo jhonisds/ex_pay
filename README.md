@@ -23,3 +23,5 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 - mix phx.new ex_pay --no-webpack --no-html
 - mix ecto.setup
 - mix credo gen.config
+- mix ecto.gen.migration create_user
+- mix ecto.migrate

@@ -6,22 +6,13 @@ defmodule ExPayWeb.UsersController do
 
   alias ExPay.User
 
+  action_fallback ExPayWeb.FallbackController
+
   def create(conn, params) do
-    params
-    |> ExPay.create_user()
-    |> handle_response(conn)
-  end
-
-  defp handle_response({:ok, %User{} = user}, conn) do
-    conn
-    |> put_status(:created)
-    |> render("create.json", user: user)
-  end
-
-  defp handle_response({:error, result}, conn) do
-    conn
-    |> put_status(:bad_request)
-    |> put_view(ExPayWeb.ErrorView)
-    |> render("400.json", result: result)
+    with {:ok, %User{} = user} <- ExPay.create_user(params) do
+      conn
+      |> put_status(:created)
+      |> render("create.json", user: user)
+    end
   end
 end

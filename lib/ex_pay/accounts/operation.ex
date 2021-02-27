@@ -3,7 +3,7 @@ defmodule ExPay.Accounts.Operation do
   Module `Operation`.
   """
   alias Ecto.Multi
-  alias ExPay.{Account, Repo}
+  alias ExPay.Account
 
   def call(%{"id" => id, "value" => value}, operation) do
     operation_type = operation_name(operation)

@@ -23,6 +23,11 @@ config :ex_pay, ExPay.Repo,
   migration_primary_key: [type: :binary_id],
   migration_foreign_key: [type: :binary_id]
 
+# Configures authentication
+config :ex_pay, :basic_auth,
+  username: "pastel",
+  password: "carne"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

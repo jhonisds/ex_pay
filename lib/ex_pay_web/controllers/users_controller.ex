@@ -1,6 +1,6 @@
 defmodule ExPayWeb.UsersController do
   @moduledoc """
-  Controller `Users`
+  Controller `Users`.
   """
   use ExPayWeb, :controller
 

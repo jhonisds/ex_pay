@@ -5,7 +5,7 @@ defmodule ExPayWeb.FallbackController do
   use ExPayWeb, :controller
 
   def call(conn, {:error, result}) do
-    IO.inspect("call fallback", label: "FallbackController")
+    # IO.inspect("call fallback", label: "FallbackController")
 
     conn
     |> put_status(:bad_request)

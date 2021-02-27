@@ -5,6 +5,7 @@ defmodule ExPayWeb.AccountsController do
   use ExPayWeb, :controller
 
   alias ExPay.Account
+  alias ExPay.Accounts.Transactions.Response
 
   action_fallback ExPayWeb.FallbackController
 
@@ -21,6 +22,14 @@ defmodule ExPayWeb.AccountsController do
       conn
       |> put_status(:ok)
       |> render("update.json", account: account)
+    end
+  end
+
+  def transaction(conn, params) do
+    with {:ok, %Response{} = transaction} <- ExPay.transaction(params) do
+      conn
+      |> put_status(:ok)
+      |> render("transaction.json", transaction: transaction)
     end
   end
 end

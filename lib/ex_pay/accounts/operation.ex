@@ -1,16 +1,23 @@
 defmodule ExPay.Accounts.Operation do
   @moduledoc """
-  Module `Deposit`.
+  Module `Operation`.
   """
   alias Ecto.Multi
   alias ExPay.{Account, Repo}
 
   def call(%{"id" => id, "value" => value}, operation) do
+    operation_type = operation_name(operation)
+
     Multi.new()
-    |> Multi.run(:account, fn repo, _changes ->
+    |> Multi.run(operation_type, fn repo, _changes ->
       get_account(repo, id)
     end)
-    |> Multi.run(:update_balance, &update_balance(&1, &2.account, value, operation))
+    |> Multi.run(operation, fn repo, changes ->
+      account = Map.get(changes, operation_type)
+      update_balance(repo, account, value, operation)
+    end)
+
+    # |> Multi.run(operation, &update_balance(&1, &2.account, value, operation))
   end
 
   defp get_account(repo, id) do
@@ -44,5 +51,9 @@ defmodule ExPay.Accounts.Operation do
     account
     |> Account.changeset(params)
     |> repo.update()
+  end
+
+  defp operation_name(operation) do
+    "account_#{Atom.to_string(operation)}" |> String.to_atom()
   end
 end

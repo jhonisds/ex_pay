@@ -8,9 +8,10 @@ defmodule ExPay do
   """
 
   alias ExPay.Users.Create, as: UserCreate
-  alias ExPay.Accounts.{Deposit, Withdraw}
+  alias ExPay.Accounts.{Deposit, Transaction, Withdraw}
 
   defdelegate create_user(attrs), to: UserCreate, as: :call
   defdelegate deposit(attrs), to: Deposit, as: :call
   defdelegate withdraw(attrs), to: Withdraw, as: :call
+  defdelegate transaction(attrs), to: Transaction, as: :call
 end

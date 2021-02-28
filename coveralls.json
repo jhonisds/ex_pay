@@ -1,0 +1,16 @@
+{
+    "skip_files": [
+      "deps/*",
+      "lib/ex_pay/application.ex",
+      "lib/ex_pay/repo.ex",
+      "lib/ex_pay_web.ex",
+      "lib/ex_pay_web/views/error_helpers.ex",
+      "test/support/conn_case.ex",
+      "test/support/data_case.ex"
+    ],
+    "coverage_options": {
+      "treat_no_relevant_lines_as_covered": true,
+      "output_dir": "cover/",
+      "minimum_coverage": 97
+    }
+  }

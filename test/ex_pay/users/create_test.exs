@@ -1,5 +1,5 @@
 defmodule ExPay.CreateTest do
-  use ExPay.DataCase
+  use ExPay.DataCase, async: true
 
   alias ExPay.User
   alias ExPay.Users.Create
